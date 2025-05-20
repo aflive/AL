@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AF LIVE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>AF LIVE - Latest News</h1>
+  <div id="news"></div>
+  <script>
+    fetch('/api/news')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('news');
+        data.forEach(n => {
+          container.innerHTML += `<h2>${n.title}</h2><img src="${n.imageUrl}"><p>${n.content}</p><hr>`;
+        });
+      });
+  </script>
+</body>
+</html>

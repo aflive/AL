@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - AF LIVE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Admin Dashboard</h2>
+  <a href="upload.html">Upload New Article</a>
+  <hr>
+  <div id="newsList"></div>
+  <script>
+    fetch('/api/news')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('newsList');
+        data.forEach(n => {
+          list.innerHTML += `<h3>${n.title}</h3><img src="${n.imageUrl}" width="200"><p>${n.content}</p><hr>`;
+        });
+      });
+  </script>
+</body>
+</html>
